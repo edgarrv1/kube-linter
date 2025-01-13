@@ -1,0 +1,27 @@
+name: Scan with Kube Linter
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  generate-sbom:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Install Kube-Linter
+      run: |
+        curl -LO https://github.com/stackrox/kube-linter/releases/latest/download/kube-linter-linux.tar.gz
+        tar -xvf kube-linter-linux.tar.gz
+        mv kube-linter /usr/local/bin/
+
+    - name: Lint Manifests
+      run: |
+        kube-linter lint /manifests/ --format=json

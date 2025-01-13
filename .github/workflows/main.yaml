@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  generate-sbom:
+  run-kube-linter:
     runs-on: ubuntu-latest
     
     steps:
@@ -24,4 +24,4 @@ jobs:
 
     - name: Lint Manifests
       run: |
-        kube-linter lint /manifests/ --format=json
+        kube-linter lint manifests/ --format=json

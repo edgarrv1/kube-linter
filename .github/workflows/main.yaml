@@ -3,10 +3,10 @@ name: Scan with Kube Linter
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   generate-sbom:
